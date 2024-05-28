@@ -1,0 +1,113 @@
+@import '../../vars.scss';
+
+.root {
+	display: flex;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	justify-content: center;
+	width: 100%;
+	background-color: rgba($bg-main, 1);
+}
+
+.createBlock {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	background-color: $bg-main;
+	margin: 100px 0;
+	padding: 30px;
+	border-radius: 15px;
+}
+
+.createContent {
+	width: 100%;
+	margin: 40px 0 0 0;
+
+	p {
+		// line-height: 170%;
+		text-align: center;
+	}
+
+	.form {
+		padding: 40px 30px;
+		display: flex;
+		flex-direction: column;
+
+		.tab {
+			height: 100%;
+			margin: 0 auto;
+			gap: 30px;
+			// .root {
+			//     background-color: #000;
+			// }
+			// :nth-child(3) {
+			//     background-color: rgba($black, 0.1);
+			// }
+		}
+
+		label {
+			// padding: 5px;
+
+			font-size: 14px;
+			font-weight: 500;
+			// background-color: #f5f5f5;
+			// box-shadow: 0 -1px 10px 0 rgba($black, 0.15);
+			color: rgba($black, 0.8);
+			border-radius: 10px;
+			z-index: 1;
+		}
+
+		input {
+			outline-color: rgba($blue, 0.5);
+			border: none;
+			box-shadow: inset 0 0 10px 0 rgba($black, 0.1);
+			background-color: rgba($blue, 0.15);
+			padding: 15px;
+			// margin: 0 0 0 30px;
+			border-radius: 5px;
+		}
+
+		p {
+			font-size: 12px;
+			font-weight: 500;
+			&.error {
+				height: 10px;
+				font-weight: 400;
+				letter-spacing: 0.15px;
+				text-align: left;
+				color: $red;
+				margin: 0 0 0 10px;
+			}
+			a {
+				color: $blue;
+			}
+		}
+
+		a {
+			padding: 0;
+			font-size: 12px;
+			font-weight: 600;
+			align-self: flex-end;
+			width: fit-content;
+			margin: 10px 5px 30px 0;
+			transition: all 0.1s ease-in-out;
+		}
+
+		button {
+			font-weight: 500;
+			color: $white;
+			background-color: $blue;
+			border: 0;
+			outline: none;
+			padding: 15px;
+			border-radius: 15px;
+			transition: all 0.1s ease-in-out;
+
+			&:hover {
+				cursor: pointer;
+				background-color: $blue-navigate;
+			}
+		}
+	}
+}
