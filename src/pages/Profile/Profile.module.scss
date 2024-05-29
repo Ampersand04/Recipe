@@ -144,12 +144,12 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            max-width: 1200px;
+            min-width: 1200px;
 
             margin: 50px auto;
             width: fit-content;
             .recipe {
-                min-width: 300px;
+                min-width: 400px;
                 height: 370px;
                 .title {
                     display: flex;

@@ -10,20 +10,8 @@ const initialState = {
 
 export const createRecipe = createAsyncThunk(
     'recipes/createRecipe',
-    async ({ title, description, type, time, image }) => {
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('type', type);
-        formData.append('time', time);
-        formData.append('image', image);
-
-        const response = await axios.post('/create', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-
+    async ({ title, description, type, time }) => {
+        const response = await axios.post('/create', { title, description, type, time });
         return response.data;
     },
 );

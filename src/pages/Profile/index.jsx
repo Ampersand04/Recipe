@@ -4,6 +4,7 @@ import styles from './Profile.module.scss';
 import { fetchUser, selectUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRecipe, fetchRecipes, toggleFavoriteRecipe } from '../../redux/slices/recipe';
+import { Link } from 'react-router-dom';
 
 export const Profile = () => {
     const dispatch = useDispatch();
@@ -132,7 +133,7 @@ export const Profile = () => {
                             {status === 'failed' && <p>ОШИБКА: {error}</p>}
                             {status === 'succeeded' && recipes.length > 0 ? (
                                 <>
-                                    <div className={styles.recipe}>
+                                    <Link to={'/add'} className={styles.recipe}>
                                         <div className={styles.image}>
                                             <img src={'add.png'} alt="Recipe" />
                                         </div>
@@ -140,7 +141,7 @@ export const Profile = () => {
                                             <h3>Новый рецепт</h3>
                                         </div>
                                         {/* <p>Создай свой новый чтобы его увидели другие!</p> */}
-                                    </div>
+                                    </Link>
 
                                     {recipes?.map((recipe, index) => (
                                         <div key={index} className={styles.recipe}>
@@ -163,7 +164,17 @@ export const Profile = () => {
                                     ))}
                                 </>
                             ) : (
-                                <p>Рецепты не найдены</p>
+                                <>
+                                    <Link to={'/add'} className={styles.recipe}>
+                                        <div className={styles.image}>
+                                            <img src={'add.png'} alt="Recipe" />
+                                        </div>
+                                        <div className={styles.title}>
+                                            <h3>Новый рецепт</h3>
+                                        </div>
+                                        {/* <p>Создай свой новый чтобы его увидели другие!</p> */}
+                                    </Link>
+                                </>
                             )}
                         </div>
                     )}

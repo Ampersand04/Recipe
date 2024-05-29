@@ -10,7 +10,6 @@ export const SignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isAuth = useSelector(selectIsAuth);
-    isAuth;
 
     const {
         register,
