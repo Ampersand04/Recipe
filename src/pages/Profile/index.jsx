@@ -4,10 +4,11 @@ import styles from './Profile.module.scss';
 import { fetchUser, logoutUser, selectUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRecipe, fetchRecipes, toggleFavoriteRecipe } from '../../redux/slices/recipe';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Profile = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const user = useSelector(selectUser);
 
@@ -29,6 +30,7 @@ export const Profile = () => {
             window.localStorage.removeItem('token');
             window.localStorage.removeItem('user'); // Очищаем данные пользователя при выходе
         }
+        return navigate('/');
     };
 
     const [likedRecipes, setLikedRecipes] = useState([]);
@@ -67,7 +69,7 @@ export const Profile = () => {
                     <div>
                         <h2>Пользователь {user?.id}</h2>
                         <p>{user?.email}</p>
-                        <button onClick={onClickLogout}>Удалить рецепт</button>
+                        <button onClick={onClickLogout}>Удалить аккаунт</button>
                     </div>
                 </div>
                 <div className={styles.tabs}>
