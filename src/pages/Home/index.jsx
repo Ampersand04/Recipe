@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 
 export const Home = () => {
     const dispatch = useDispatch();
-    const recipes = useSelector((state) => state.recipe.recipes);
+    const recipes = useSelector((state) => state.recipe.recipe) || [];
     const status = useSelector((state) => state.recipe.status);
     const error = useSelector((state) => state.recipe.error);
 
@@ -134,7 +134,7 @@ export const Home = () => {
             <div className={styles.recipes}>
                 {status === 'loading' && <p>Загрузка...</p>}
                 {status === 'failed' && <p>ОШИБКА: {error}</p>}
-                {status === 'succeeded' && recipes.length > 0 ? (
+                {status === 'succeeded' && recipes && recipes?.length > 0 ? (
                     recipes.map((recipe, index) => (
                         <div key={index} className={styles.recipe}>
                             <div className={styles.image}>

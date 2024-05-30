@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import styles from './Profile.module.scss';
-import { fetchUser, selectUser } from '../../redux/slices/auth';
+import { fetchUser, logoutUser, selectUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRecipe, fetchRecipes, toggleFavoriteRecipe } from '../../redux/slices/recipe';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,14 @@ export const Profile = () => {
     const onClickConfirm = (id) => {
         if (window.confirm('Вы действительно хотите это сделать?')) {
             dispatch(deleteRecipe(id));
+        }
+    };
+
+    const onClickLogout = () => {
+        if (window.confirm('Вы действительно хотите выйти?')) {
+            dispatch(logoutUser());
+            window.localStorage.removeItem('token');
+            window.localStorage.removeItem('user'); // Очищаем данные пользователя при выходе
         }
     };
 
@@ -59,6 +67,7 @@ export const Profile = () => {
                     <div>
                         <h2>Пользователь {user?.id}</h2>
                         <p>{user?.email}</p>
+                        <button onClick={onClickLogout}>Удалить рецепт</button>
                     </div>
                 </div>
                 <div className={styles.tabs}>
