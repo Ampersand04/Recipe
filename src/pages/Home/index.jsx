@@ -141,7 +141,7 @@ export const Home = () => {
                         <div key={index} className={styles.recipe}>
                             <div className={styles.image}>
                                 <img
-                                    src={`http://yourserver.com/uploads/${recipe.image}`}
+                                    src={`https://api-recipe-en30.onrender.com/uploads/${recipe.image}`}
                                     alt={recipe.title}
                                 />
                                 <p className={styles.time}>{recipe.time}</p>
