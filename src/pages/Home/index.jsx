@@ -68,7 +68,7 @@ export const Home = () => {
         'Более 1 часа',
     ];
 
-    const typeSortOptions = ['Горячее', 'Закуски', 'Десерт', 'Напиток', 'Салат', 'Суп'];
+    const typeSortOptions = ['Горячее', 'Закуски', 'Десерт', 'Напиток', 'Салат'];
 
     return (
         <Layout title={'Рецепты для дома'}>

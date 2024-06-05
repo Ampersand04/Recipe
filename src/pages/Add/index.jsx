@@ -18,7 +18,7 @@ const timeSortOptions = [
     'Более 1 часа',
 ];
 
-const typeSortOptions = ['Горячее', 'Закуски', 'Десерт', 'Напиток', 'Салат', 'Суп'];
+const typeSortOptions = ['Горячее', 'Закуски', 'Десерт', 'Напиток', 'Салат'];
 
 export const Add = () => {
     const dispatch = useDispatch();
