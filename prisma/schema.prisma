@@ -18,7 +18,7 @@ model User {
   fullname String
   email    String   @unique
   password String
-  role     Role
+  role     String
   favorites Recipe[]
 }
 
