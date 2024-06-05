@@ -264,7 +264,13 @@ app.delete('/delete', authMiddleware, async (req, res) => {
 
 app.get('/get/recipes', async (req, res) => {
     try {
-        const recipes = await prisma.recipe.findMany();
+        const recipes = await prisma.recipe.findMany({
+            where: {
+                image: {
+                    not: 'f',
+                },
+            },
+        });
 
         // Добавляем URL изображений к каждому рецепту
         const recipesWithImageUrl = recipes.map((recipe) => ({
