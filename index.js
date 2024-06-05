@@ -193,7 +193,7 @@ app.post('/admin', async (req, res) => {
 
 app.post('/create', upload.single('image'), async (req, res) => {
     const { title, description, type, time } = req.body;
-    const image = req.file ? req.file.filename : null;
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     try {
         if (!title || !description || !type || !time) {
@@ -205,7 +205,7 @@ app.post('/create', upload.single('image'), async (req, res) => {
                 description,
                 type,
                 time,
-                image, // Добавление поля для хранения имени файла изображения
+                image: imageUrl, // Добавление поля для хранения имени файла изображения
             },
         });
 
@@ -265,14 +265,12 @@ app.delete('/delete', authMiddleware, async (req, res) => {
 app.get('/get/recipes', async (req, res) => {
     try {
         const recipes = await prisma.recipe.findMany();
-
-        // Добавляем URL изображений к каждому рецепту
-        const recipesWithImageUrl = recipes.map((recipe) => ({
-            ...recipe,
-            image: recipe.image,
-            imageUrl: `/uploads/${recipe.image}`,
-        }));
-
+        const recipesWithImageUrl = recipes.map((recipe) => {
+            if (recipe.image) {
+                recipe.image = `${req.protocol}://${req.get('host')}/uploads/${recipe.image}`;
+            }
+            return recipe;
+        });
         res.json(recipesWithImageUrl);
     } catch (error) {
         console.error('Error: ', error);
