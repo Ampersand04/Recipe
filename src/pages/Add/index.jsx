@@ -39,7 +39,7 @@ export const Add = () => {
             description: '',
             type: '',
             time: '',
-            image: null,
+            image: '',
         },
         mode: 'onChange',
     });
