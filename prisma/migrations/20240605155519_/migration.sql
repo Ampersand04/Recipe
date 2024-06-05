@@ -13,14 +13,15 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Recipe" (
+CREATE TABLE "recipe" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "time" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
 
-    CONSTRAINT "Recipe_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "recipe_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -39,7 +40,7 @@ CREATE UNIQUE INDEX "_RecipeToUser_AB_unique" ON "_RecipeToUser"("A", "B");
 CREATE INDEX "_RecipeToUser_B_index" ON "_RecipeToUser"("B");
 
 -- AddForeignKey
-ALTER TABLE "_RecipeToUser" ADD CONSTRAINT "_RecipeToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Recipe"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_RecipeToUser" ADD CONSTRAINT "_RecipeToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "recipe"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_RecipeToUser" ADD CONSTRAINT "_RecipeToUser_B_fkey" FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

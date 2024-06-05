@@ -13,7 +13,7 @@ const pool = new pg.Pool({
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/'); // Укажите папку для сохранения файлов
+        cb(null, './uploads'); // Укажите папку для сохранения файлов
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname); // Используйте оригинальное имя файла
@@ -23,11 +23,12 @@ const storage = multer.diskStorage({
 const prisma = new PrismaClient();
 const app = express();
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 const port = process.env.PORT;
 const router = express.Router();
 const jwt = JsonWebToken;
 const jwtSecret = process.env.JWT_SECRET;
+app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(cors());
 /* 
@@ -190,16 +191,21 @@ app.post('/admin', async (req, res) => {
     }
 });
 
-app.post('/create', async (req, res) => {
+app.post('/create', upload.single('image'), async (req, res) => {
     const { title, description, type, time } = req.body;
+    const image = req.file ? req.file.filename : null;
 
     try {
+        if (!title || !description || !type || !time) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
         const newRecipe = await prisma.recipe.create({
             data: {
                 title,
                 description,
                 type,
                 time,
+                image, // Добавление поля для хранения имени файла изображения
             },
         });
 
@@ -260,7 +266,13 @@ app.get('/get/recipes', async (req, res) => {
     try {
         const recipes = await prisma.recipe.findMany();
 
-        res.json(recipes);
+        // Добавляем URL изображений к каждому рецепту
+        const recipesWithImageUrl = recipes.map((recipe) => ({
+            ...recipe,
+            imageUrl: `/uploads/${recipe.image}`,
+        }));
+
+        res.json(recipesWithImageUrl);
     } catch (error) {
         console.error('Error: ', error);
         res.status(500).json({ error: 'Произошла ошибка при получении рецептов' });

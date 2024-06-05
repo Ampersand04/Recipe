@@ -19,7 +19,7 @@ model User {
   email    String   @unique
   password String
   role     String
-  favorites Recipe[] // Добавляем отношение к рецептам, которые пользователь добавил в избранное
+  favorites Recipe[]
 }
 
 enum Role {
@@ -33,5 +33,9 @@ model Recipe {
   description String
   type        String
   time        String
-  favoritedBy User[] 
+  image       String
+  favoritedBy User[]
+
+
+  @@map("recipe")
 }
