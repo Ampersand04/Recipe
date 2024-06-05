@@ -39,17 +39,18 @@ export const Add = () => {
             description: '',
             type: '',
             time: '',
+            image: null,
         },
         mode: 'onChange',
     });
 
     const onSubmit = async (values) => {
-        console.log(values);
         const add = {
             title: values.title || '',
             description: values.description || '',
             type: values.type?.value || '',
             time: values.time?.value || '',
+            image: values.image[0],
         };
         console.log(add);
 
@@ -129,6 +130,16 @@ export const Add = () => {
 
                             <p className={styles.error}>{errors?.type?.message}</p>
                         </div>
+
+                        <label htmlFor="image">Загрузить изображение</label>
+                        <input
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept="image/*"
+                            {...register('image', { required: 'Загрузите изображение' })}
+                        />
+                        <p className={styles.error}>{errors.image?.message}</p>
                     </div>
 
                     <button type="submit">Добавить рецепт</button>

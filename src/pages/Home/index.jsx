@@ -136,11 +136,14 @@ export const Home = () => {
             <div className={styles.recipes}>
                 {status === 'loading' && <p>Загрузка...</p>}
                 {status === 'failed' && <p>ОШИБКА: {error}</p>}
-                {status === 'succeeded' && recipes?.length > 0 ? (
+                {status === 'succeeded' && Array.isArray(recipes) && recipes?.length > 0 ? (
                     recipes.map((recipe, index) => (
                         <div key={index} className={styles.recipe}>
                             <div className={styles.image}>
-                                <img src={'carrot.png'} alt="Recipe" />
+                                <img
+                                    src={`http://yourserver.com/uploads/${recipe.image}`}
+                                    alt={recipe.title}
+                                />
                                 <p className={styles.time}>{recipe.time}</p>
                                 <p className={styles.type}>{recipe.type}</p>
                             </div>

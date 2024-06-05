@@ -8,13 +8,14 @@ const initialState = {
     favoriteMessage: null,
 };
 
-export const createRecipe = createAsyncThunk(
-    'recipes/createRecipe',
-    async ({ title, description, type, time }) => {
-        const response = await axios.post('/create', { title, description, type, time });
-        return response.data;
-    },
-);
+export const createRecipe = createAsyncThunk('recipes/createRecipe', async (formData) => {
+    const response = await axios.post('/create', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data;
+});
 
 export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async () => {
     const response = await axios.get('/get/recipes');
