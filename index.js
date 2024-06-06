@@ -193,7 +193,7 @@ app.post('/admin', async (req, res) => {
 
 app.post('/create', upload.single('image'), async (req, res) => {
     const { title, description, type, time } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    const imageUrl = req.file ? req.file.filename : null;
 
     try {
         if (!title || !description || !type || !time) {
