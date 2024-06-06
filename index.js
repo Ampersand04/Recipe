@@ -265,13 +265,13 @@ app.delete('/delete', authMiddleware, async (req, res) => {
 app.get('/get/recipes', async (req, res) => {
     try {
         const recipes = await prisma.recipe.findMany();
-        const recipesWithImageUrl = recipes.map((recipe) => {
-            if (recipe.image) {
-                recipe.image = `${req.protocol}://${req.get('host')}/uploads/${recipe.image}`;
-            }
-            return recipe;
-        });
-        res.json(recipesWithImageUrl);
+        // const recipesWithImageUrl = recipes.map((recipe) => {
+        //     if (recipe.image) {
+        //         recipe.image = `${req.protocol}://${req.get('host')}/uploads/${recipe.image}`;
+        //     }
+        //     return recipe;
+        // });
+        res.json(recipes);
     } catch (error) {
         console.error('Error: ', error);
         res.status(500).json({ error: 'Произошла ошибка при получении рецептов' });
