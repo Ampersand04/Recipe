@@ -69,7 +69,7 @@ export const Profile = () => {
                     <div>
                         <h2>Пользователь {user?.id}</h2>
                         <p>{user?.email}</p>
-                        <button onClick={onClickLogout}>Удалить аккаунт</button>
+                        <button onClick={onClickLogout}>Выйти из аккаунта</button>
                     </div>
                 </div>
                 <div className={styles.tabs}>

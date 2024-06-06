@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { fetchRecipes, searchRecipes, toggleFavoriteRecipe } from '../../redux/slices/recipe';
 import styles from './Home.module.scss';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
     const dispatch = useDispatch();
@@ -139,14 +140,14 @@ export const Home = () => {
                 {status === 'succeeded' && Array.isArray(recipes) && recipes?.length > 0 ? (
                     recipes.map((recipe, index) => (
                         <div key={index} className={styles.recipe}>
-                            <div className={styles.image}>
+                            <Link to={`/recipe/${recipe.id}`} className={styles.image}>
                                 <img
                                     src={`https://api-recipe-en30.onrender.com/uploads/${recipe.image}`}
                                     alt={recipe.title}
                                 />
                                 <p className={styles.time}>{recipe.time}</p>
                                 <p className={styles.type}>{recipe.type}</p>
-                            </div>
+                            </Link>
                             <div className={styles.title}>
                                 <h3>{recipe.title}</h3>
                                 <div className={styles.path}>

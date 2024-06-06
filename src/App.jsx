@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Add, Home, Login, SignUp } from './pages';
 import { Profile } from './pages/Profile';
+import { Recipe } from './pages/Recipe';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
 
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/recipe/:id" element={<Recipe />} />
 
                 <Route path="/add" element={<Add />} />
             </Routes>
