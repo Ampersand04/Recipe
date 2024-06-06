@@ -33,7 +33,7 @@ model Recipe {
   description String
   type        String
   time        String
-  image       String
+  image       String?
   favoritedBy User[]
 
 
