@@ -69,6 +69,10 @@ form {
             align-items: center;
             margin: 10px 0;
             h3 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2; // количество строк
+                -webkit-box-orient: vertical;
+                overflow: hidden;
                 margin: 0;
             }
 
