@@ -146,7 +146,11 @@ export const Profile = () => {
                                 <>
                                     <Link to={'/add'} className={styles.recipe}>
                                         <div className={styles.image}>
-                                            <img src={'add.png'} alt="Recipe" />
+                                            <img
+                                                className={styles.default}
+                                                src={'add.png'}
+                                                alt="Recipe"
+                                            />
                                         </div>
                                         <div className={styles.title}>
                                             <h3>Новый рецепт</h3>
@@ -157,7 +161,10 @@ export const Profile = () => {
                                     {recipes?.map((recipe, index) => (
                                         <div key={index} className={styles.recipe}>
                                             <div className={styles.image}>
-                                                <img src={'carrot.png'} alt="Recipe" />
+                                                <img
+                                                    src={`https://api-recipe-en30.onrender.com/uploads/${recipe.image}`}
+                                                    alt={recipe.title}
+                                                />
                                                 <p className={styles.time}>{recipe?.time}</p>
                                                 <p className={styles.type}>{recipe?.type}</p>
                                             </div>
